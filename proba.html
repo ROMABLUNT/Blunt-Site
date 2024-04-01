@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainbow Text on Scroll</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        height: 2000px; /* Для демонстрации прокрутки */
+ /* Скрыть вертикальную полосу прокрутки */
+    }
+
+    .main-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow-y: hidden; /* Скрыть вертикальную полосу прокрутки */
+    }
+
+    .mainText {
+        position: absolute; /* Фиксированное позиционирование */
+        top: 50%; /* Положение текста по вертикали */
+        left: 50%; /* Положение текста по горизонтали */
+        transform: translate(-50%, -50%); /* Центрирование текста */
+    }
+
+    .rainbow-text {
+        color: black; /* Изначальный цвет текста */
+        position: relative; /* Установка позиции относительно */
+    }
+</style>
+</head>
+<body>
+
+<div class="main-container" id="main-container">
+    <div class="mainText">
+        <h1 class="mainh1 rainbow-text">
+            ROMA BLUNT
+        </h1>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('scroll', function() {
+        var scrollPosition = window.scrollY;
+
+        // Выбираем элемент с классом rainbow-text
+        var text = document.querySelector('.rainbow-text');
+
+        // Конвертируем scrollPosition в значение между 0 и 360
+        var hue = scrollPosition / (document.documentElement.scrollHeight - window.innerHeight) * 360;
+
+        // Применяем измененный цвет текста
+        text.style.color = 'hsl(' + hue + ', 100%, 50%)';
+    });
+</script>
+
+</body>
+</html>
